@@ -20,7 +20,7 @@ export default function ContactPage() {
     message: "",
     captcha: "",
   })
-  const [captchaUrl, setCaptchaUrl] = useState(`/api/captcha.php?t=${Date.now()}`)
+  const [captchaUrl, setCaptchaUrl] = useState(`https://stacknest.site/blogpost/api/captcha.php?t=${Date.now()}`)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ContactPage() {
   }, [])
 
   const refreshCaptcha = () => {
-    setCaptchaUrl(`/api/captcha.php?t=${Date.now()}`)
+    setCaptchaUrl(`https://stacknest.site/blogpost/api/captcha.php?t=${Date.now()}`)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -130,7 +130,7 @@ export default function ContactPage() {
                   <div>
                     <label className="text-sm font-medium mb-2 block">{lang === 'ru' ? 'Код безопасности' : lang === 'en' ? 'Security code' : 'Xavfsizlik kodi'}</label>
                     <div className="flex items-center space-x-2 mb-2">
-                      <img src={captchaUrl || "/placeholder.svg"} alt="Captcha" className="border rounded" />
+                      <img src={captchaUrl} alt="Captcha" className="border rounded" />
                       <Button type="button" variant="outline" size="sm" onClick={refreshCaptcha}>
                         Yangilash
                       </Button>
@@ -154,14 +154,14 @@ export default function ContactPage() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Bog'lanish ma'lumotlari</CardTitle>
-                  <CardDescription>Bizga quyidagi usullar orqali murojaat qilishingiz mumkin</CardDescription>
+                  <CardTitle>{lang === 'ru' ? 'Контактная информация' : lang === 'en' ? 'Contact Information' : "Bog'lanish ma'lumotlari"}</CardTitle>
+                  <CardDescription>{lang === 'ru' ? 'Вы можете связаться с нами следующими способами' : lang === 'en' ? 'You can reach us via the following methods' : "Bizga quyidagi usullar orqali murojaat qilishingiz mumkin"}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">Email</p>
+                      <p className="font-medium">{lang === 'ru' ? 'Email' : lang === 'en' ? 'Email' : 'Email'}</p>
                       <p className="text-muted-foreground">info@codeblog.uz</p>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">Telefon</p>
+                      <p className="font-medium">{lang === 'ru' ? 'Телефон' : lang === 'en' ? 'Phone' : 'Telefon'}</p>
                       <p className="text-muted-foreground">+998 90 123 45 67</p>
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">Manzil</p>
+                      <p className="font-medium">{lang === 'ru' ? 'Адрес' : lang === 'en' ? 'Address' : 'Manzil'}</p>
                       <p className="text-muted-foreground">Toshkent, O'zbekiston</p>
                     </div>
                   </div>
@@ -186,21 +186,21 @@ export default function ContactPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Ish vaqti</CardTitle>
+                  <CardTitle>{lang === 'ru' ? 'Часы работы' : lang === 'en' ? 'Working Hours' : 'Ish vaqti'}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Dushanba - Juma</span>
+                      <span>{lang === 'ru' ? 'Понедельник - Пятница' : lang === 'en' ? 'Monday - Friday' : 'Dushanba - Juma'}</span>
                       <span className="text-muted-foreground">9:00 - 18:00</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Shanba</span>
+                      <span>{lang === 'ru' ? 'Суббота' : lang === 'en' ? 'Saturday' : 'Shanba'}</span>
                       <span className="text-muted-foreground">10:00 - 16:00</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Yakshanba</span>
-                      <span className="text-muted-foreground">Dam olish</span>
+                      <span>{lang === 'ru' ? 'Воскресенье' : lang === 'en' ? 'Sunday' : 'Yakshanba'}</span>
+                      <span className="text-muted-foreground">{lang === 'ru' ? 'Выходной' : lang === 'en' ? 'Closed' : 'Dam olish'}</span>
                     </div>
                   </div>
                 </CardContent>
