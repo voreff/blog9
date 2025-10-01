@@ -20,7 +20,7 @@ export default function ContactPage() {
     message: "",
     captcha: "",
   })
-  const [captchaUrl, setCaptchaUrl] = useState(`https://stacknest.site/blogpost/api/captcha.php?t=${Date.now()}`)
+  const [captchaUrl, setCaptchaUrl] = useState(`/api/captcha.php?t=${Date.now()}`)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ContactPage() {
   }, [])
 
   const refreshCaptcha = () => {
-    setCaptchaUrl(`https://stacknest.site/blogpost/api/captcha.php?t=${Date.now()}`)
+    setCaptchaUrl(`/api/captcha.php?t=${Date.now()}`)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,10 +36,11 @@ export default function ContactPage() {
     setLoading(true)
 
     try {
-      const response = await fetch("https://stacknest.site/blogpost/api/api.php?action=contact", {
+      const response = await fetch("/api/api.php?action=contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: 'include',
       })
       const data = await response.json()
 
@@ -130,7 +131,7 @@ export default function ContactPage() {
                   <div>
                     <label className="text-sm font-medium mb-2 block">{lang === 'ru' ? 'Код безопасности' : lang === 'en' ? 'Security code' : 'Xavfsizlik kodi'}</label>
                     <div className="flex items-center space-x-2 mb-2">
-                      <img src={captchaUrl} alt="Captcha" className="border rounded" />
+                      <img src={captchaUrl || "/placeholder.svg"} alt="Captcha" className="border rounded" />
                       <Button type="button" variant="outline" size="sm" onClick={refreshCaptcha}>
                         Yangilash
                       </Button>
