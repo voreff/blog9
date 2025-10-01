@@ -36,7 +36,7 @@ export default function ContactPage() {
     setLoading(true)
 
     try {
-      const response = await fetch("/api/api.php?action=contact", {
+      const response = await fetch("https://stacknest.site/blogpost/api/api.php?action=contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
